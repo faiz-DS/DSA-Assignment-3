@@ -1,0 +1,17 @@
+def increment_large_integer(digits):
+    carry = 1
+
+    for i in range(len(digits) - 1, -1, -1):
+        current_sum = digits[i] + carry
+        digits[i] = current_sum % 10
+        carry = current_sum // 10
+
+    if carry > 0:
+        digits.insert(0, carry)
+
+    return digits
+
+# Test example
+digits = [1, 2, 3]
+print(increment_large_integer(digits))  # Output: [1, 2, 4]
+

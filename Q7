@@ -1,0 +1,31 @@
+def find_missing_ranges(nums, lower, upper):
+    def add_range(start, end):
+        if start == end:
+            return str(start)
+        else:
+            return str(start) + "->" + str(end)
+
+    result = []
+
+    if not nums:
+        result.append(add_range(lower, upper))
+        return result
+
+    if nums[0] > lower:
+        result.append(add_range(lower, nums[0] - 1))
+
+    for i in range(1, len(nums)):
+        if nums[i] > nums[i - 1] + 1:
+            result.append(add_range(nums[i - 1] + 1, nums[i] - 1))
+
+    if nums[-1] < upper:
+        result.append(add_range(nums[-1] + 1, upper))
+
+    return result
+
+# Test example
+nums = [0, 1, 3, 50, 75]
+lower = 0
+upper = 99
+print(find_missing_ranges(nums, lower, upper))
+# Output: [['2', '2'], ['4', '49'], ['51', '74'], ['76', '99']]

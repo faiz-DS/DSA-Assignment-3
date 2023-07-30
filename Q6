@@ -1,0 +1,11 @@
+def find_single_element(nums):
+    result = 0
+
+    for num in nums:
+        result ^= num
+
+    return result
+
+# Test example
+nums = [2, 2, 1]
+print(find_single_element(nums))  # Output: 1
